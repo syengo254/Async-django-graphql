@@ -38,6 +38,7 @@ query allposts {
   }
 ```
 <br />
+
 ```gql
 query allposts {
   allPosts(offset: 0, limit: 50) {
