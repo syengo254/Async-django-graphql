@@ -1,23 +1,25 @@
-from django.core.management.base import BaseCommand, CommandError
+from time import sleep
+
+from django.core.management.base import BaseCommand
+
+from blog.factories import PostFactory
 
 
 class Command(BaseCommand):
-    help = "Closes the specified poll for voting"
-
-    def add_arguments(self, parser):
-        parser.add_argument("poll_ids", nargs="+", type=int)
+    help = "Seed the database with millions of records."
 
     def handle(self, *args, **options):
-        pass
-        # for poll_id in options["poll_ids"]:
-        #     try:
-        #         poll = Poll.objects.get(pk=poll_id)
-        #     except Poll.DoesNotExist:
-        #         raise CommandError('Poll "%s" does not exist' % poll_id)
+        self.stdout.write(
+            self.style.NOTICE("Generating 1 million posts, please wait..."),
+        )
 
-        #     poll.opened = False
-        #     poll.save()
+        try:
+            for i in range(1000):
+                _ = PostFactory.create_batch(1000)
+                sleep(0.01)
+        except Exception as e:
+            self.stdout.write(self.style.ERROR(f"{e}"))
 
-        #     self.stdout.write(
-        #         self.style.SUCCESS('Successfully closed poll "%s"' % poll_id)
-        #     )
+        self.stdout.write(
+            self.style.SUCCESS("Done Generating 1 million posts."),
+        )
