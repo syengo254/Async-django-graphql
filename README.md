@@ -64,5 +64,10 @@ query allposts {
 ### License
 Free
 
+### Credits
+- https://github.com/strawberry-graphql/strawberry
+- https://strawberry-graphql.github.io/strawberry-graphql-django/
+- https://www.djangoproject.com/
+  
 ### Copyright
 &copy; 2024-2042, David Syengo. All rights reserved.
